@@ -1,0 +1,20 @@
+# Используем официальный образ Node.js
+FROM node:16
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Копируем package.json и package-lock.json (или yarn.lock) из папки backend
+COPY ./backend/package*.json ./
+
+# Устанавливаем зависимости
+RUN yarn install
+
+# Копируем все файлы бэкенда в контейнер
+COPY ./backend /app
+
+# Открываем порт для бэкенда
+EXPOSE 5000
+
+# Запускаем сервер для разработки
+CMD ["yarn", "dev"]  # Замените на команду для вашего бэкенда, если нужно

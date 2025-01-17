@@ -1,0 +1,45 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VUE_APP_API_URL=http://backend:5000  # Указываем имя сервиса backend для внутреннего доступа
+    volumes:
+      - ./frontend:/app  # Монтируем локальную папку с фронтендом в контейнер для разработки
+    networks:
+      - mynetwork
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app  # Монтируем локальную папку с бэкендом в контейнер для разработки
+    networks:
+      - mynetwork
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-chebureki
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chebureki
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    restart: always
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

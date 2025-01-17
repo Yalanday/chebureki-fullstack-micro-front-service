@@ -1,0 +1,4 @@
+**/node_modules/
+**/dist/
+.idea/
+/mysql_data/
