@@ -1,4 +1,4 @@
-import mysql, {Connection, ErrorPacketParams, QueryError} from 'mysql2/promise'
+import mysql, {Connection} from 'mysql2/promise'
 import {ConnectionOptions} from "mysql2";
 import {TableTypes} from "../types/db.types";
 import fs from 'fs';
@@ -12,7 +12,6 @@ class MyDataBase {
         this.param = param
     }
 
-    // Подключение к базе данных
     connectToDB = async () => {
         try {
             const connection = await mysql.createConnection(this.param);
@@ -42,7 +41,7 @@ class MyDataBase {
         }
     };
 
-    public async queryInsert(table: TableTypes, [...arrParam]: string[], [...arrValue]: any[]) {
+    public async queryInsert<T>(table: TableTypes, [...arrParam]: T[], [...arrValue]: any[]) {
         let connection: Connection;
         try {
             connection = await this.connectToDB();
@@ -61,7 +60,7 @@ class MyDataBase {
         }
     }
 
-    public async checkDB() {
+    public async checkDB() : Promise<void> {
         let connection : Connection;
         try {
             connection = await this.connectToDB();

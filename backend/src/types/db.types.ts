@@ -4,3 +4,9 @@ export enum TableTypes {
     admins = 'admins',
     cashiers = 'cashiers',
 }
+
+export enum AddUserEnum {
+    name = 'name',
+    lastname = 'lastname',
+    password = 'password'
+}

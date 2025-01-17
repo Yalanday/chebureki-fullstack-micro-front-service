@@ -2,7 +2,7 @@
 import {port} from "./config-files/port";
 import {app} from "./app";
 import {myDB} from "./db/db";
-import {TableTypes} from "./types/db.types";
+import {AddUserEnum, TableTypes} from "./types/db.types";
 import {router} from "./app/presentation/router";
 
 
@@ -17,10 +17,11 @@ app.listen(port, async () => {
     }
 })
 
-const addAdmin = async () => {
-    await myDB.queryInsert(
+
+const addAdmin = async () :Promise<void> => {
+    await myDB.queryInsert<AddUserEnum>(
         TableTypes.cashiers,
-        ['name', 'lastname', 'password'],
+        [AddUserEnum.name, AddUserEnum.lastname, AddUserEnum.password],
         ['Zinaida', 'Spears', '333']
     )
 }
