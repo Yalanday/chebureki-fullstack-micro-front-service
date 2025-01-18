@@ -1,10 +1,6 @@
 export type StaticData = {
     users: StaticUserData[];
     directors: StaticDirectorsData[];
-    admins: StaticAdminsData[];
-    cashiers: StaticCashierData[];
-    generalDirector: StaticAllDirectorData[];
-    semiDirector: StaticAllDirectorData[];
 }
 
 export type StaticUserData = {
@@ -19,20 +15,7 @@ export type StaticDirectorsData = {
     name: string
 }
 
-export type StaticAdminsData = {
-    id: number,
-    name: string
-}
 
-export type StaticCashierData = {
-    id: number,
-    name: string
-}
-
-export type StaticAllDirectorData = {
-    id: 1,
-    name: string
-}
 
 export const data: StaticData = {
     users: [
@@ -64,36 +47,5 @@ export const data: StaticData = {
             label: 'semi-director',
             name: 'Испольнительный директор'
         }
-    ],
-
-    admins: [
-        {
-            id: 1,
-            name: 'Иванова Мария'
-        },
-        {
-            id: 2,
-            name: 'Петров Иван'
-        }
-    ],
-
-    cashiers: [
-        {
-            id: 1,
-            name: 'Инна Лахтина'
-        },
-        {
-            id: 3,
-            name: 'Галина Сергеева'
-        }
-    ],
-    generalDirector: [{
-        id: 1,
-        name: 'Виктор Леонидович'
-    }],
-    semiDirector: [{
-        id: 1,
-        name: 'Виктория Сергеевна'
-    }]
-
+    ]
 };

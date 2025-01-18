@@ -26,7 +26,7 @@ const addAdmin = async () :Promise<void> => {
     )
 }
 
-addAdmin()
+
 
 
 

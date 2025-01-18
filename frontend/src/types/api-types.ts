@@ -37,3 +37,9 @@ export type FetchDataNewsArgs = {
     error: Ref<Error | null>;
     url: string
 }
+
+export type UserContent = {
+    name: string,
+    lastname: string,
+    status: boolean
+}

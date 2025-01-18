@@ -5,7 +5,9 @@
 <template>
   <header id="header" class="header">
     <div class="container">
-      <h2 style="text-align: center">Тест Frontend. Кейс № 1</h2>
+      <router-link to="/">
+      <h1 style="text-align: center">Чебуреки</h1>
+      </router-link>
     </div>
   </header>
 </template>
@@ -16,6 +18,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 </style>

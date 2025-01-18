@@ -83,3 +83,9 @@ export type PropertyCatalogType = {
         src: string;
     }[];
 }
+
+export interface FormStatePassword {
+    password: string;
+    id: number | undefined;
+    table: string | undefined;
+}
