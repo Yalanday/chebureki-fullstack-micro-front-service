@@ -2,13 +2,14 @@
 import {ref, Ref, onMounted, computed} from 'vue';
 import {authorizationAPI} from "@/api/autorization-api";
 import FormPassword from "@/components/FormPassword.vue";
+import { Modal } from 'ant-design-vue';
 
 export type DataType = {
   id: number,
   label: string,
   name: string,
-  lastname?: string
-  status?: string
+  lastname: string
+  status: string
 }
 
 const open = ref<boolean>(false);
@@ -17,8 +18,8 @@ const visionLink: Ref<boolean> = ref(false);
 
 const visionInputPassword: Ref<boolean> = ref(false);
 
-const idUser = ref<number | undefined>(undefined);
-const tableUser = ref<string | undefined>(undefined);
+const idUser = ref<number>(0);
+const tableUser = ref<string>('');
 
 const data: Ref<DataType[] | null> = ref(null);
 
@@ -37,7 +38,7 @@ const totalPages = computed(() => {
   return Math.ceil(data.value.length / pageSize.value);
 });
 
-const clickHandler = async (string: string, status?: string, id?: number) => {
+const clickHandler = async (string: string, status: string, id: number) => {
   if (status) {
     console.log(status)
     idUser.value = id;
@@ -65,6 +66,7 @@ const prevPage = () => {
 onMounted(async () => {
   data.value = await authorizationAPI('type-users');
 });
+
 </script>
 
 <template>
@@ -82,11 +84,11 @@ onMounted(async () => {
                :footer="null"
                title="Введите цифровой код доступа">
 
-        <form-password v-if="open" :table="tableUser" :id="idUser"/>
+        <form-password :v-show="open" :table="tableUser" :id="idUser"/>
       </a-modal>
 
       <transition name="link-fade">
-        <a v-if="visionLink" @click="clickHandler('type-users')" class="link">
+        <a v-if="visionLink" @click="clickHandler('type-users','',0)" class="link">
           В начало&nbsp;&hookleftarrow;
         </a>
       </transition>

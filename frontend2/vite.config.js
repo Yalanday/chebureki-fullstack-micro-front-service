@@ -7,22 +7,15 @@ import federation from '@originjs/vite-plugin-federation'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: 'http://localhost:4173/',
+  base: 'http://localhost:4177/',
   plugins: [
     vue(),
     vueDevTools(),
     federation({
-      name: 'frontend-1',
+      name: 'frontend-2',
       filename: 'remoteEntry.js',
       exposes: {
         './App': './src/App.vue',
-        './Header': './src/components/layouts/Header.vue',
-        './Footer': './src/components/layouts/Footer.vue',
-        './HomePage': './src/pages/HomePage.vue',
-        './Autorization': './src/components/Autorization.vue',
-        './FormPassword': './src/components/FormPassword.vue',
-        './InterfacePage': './src/pages/InterfacePage.vue',
-        './NotFound': './src/pages/NotFound.vue',
       },
       shared: {
         vue: { singleton: true },

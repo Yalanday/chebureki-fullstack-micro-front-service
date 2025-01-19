@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import {reactive, ref, watch} from 'vue';
-import {loginAPI} from "@/api/autorization-api";
-import {useRouter} from 'vue-router';
-import {message} from "ant-design-vue";
-import {UserContent} from "@/types/api-types";
-import {FormStatePassword} from "@/types/types";
+import { reactive, ref, watch } from 'vue';
+import { loginAPI } from "@/api/autorization-api";
+import { useRouter } from 'vue-router';
+import { message } from "ant-design-vue";
+import { UserContent } from "@/types/api-types";
+import { FormStatePassword } from "@/types/types";
 
 const router = useRouter();
 
@@ -57,8 +57,8 @@ const onFinish = async (values: any) => {
 
   if (userContent.value?.status) {
     setTimeout(() => {
-          router.push('/interface');
-        }, 3000
+      window.dispatchEvent(new CustomEvent('navigate', { detail: { path: '/interface' } }));
+    }, 3000
     )
   } else {
     message.error('Неверный пароль!');
@@ -77,44 +77,27 @@ const onFinishFailed = (errorInfo: any) => {
     Добро пожаловать {{ userContent.name }} {{ userContent.lastname }}!
   </h1>
 
-  <a-form
-      v-else
-      class="form-password"
-      :model="formState"
-      name="basic"
-      :wrapper-col="{ span: 24 }"
-      autocomplete="off"
-      @finish="onFinish"
-      @finishFailed="onFinishFailed"
-  >
+  <a-form v-else class="form-password" :model="formState" name="basic" :wrapper-col="{ span: 24 }" autocomplete="off"
+    @finish="onFinish" @finishFailed="onFinishFailed">
     <a-form-item name="table">
-      <input type="hidden" v-model="formState.table"/>
+      <input type="hidden" v-model="formState.table" />
     </a-form-item>
 
     <a-form-item name="id">
-      <input type="hidden" v-model="formState.id"/>
+      <input type="hidden" v-model="formState.id" />
     </a-form-item>
 
-    <a-form-item
-        name="password"
-        :rules="[
-                  { required: true, message: 'Введите шестизначный код!' },
-                  { min: 6, message: 'Введите 6 цифр!' },
-                ]"
-    >
+    <a-form-item name="password" :rules="[
+      { required: true, message: 'Введите шестизначный код!' },
+      { min: 6, message: 'Введите 6 цифр!' },
+    ]">
 
-      <a-input-password
-          :maxlength="6"
-          v-model:value="formState.password"
-          @input="handleChanges"/>
+      <a-input-password :maxlength="6" v-model:value="formState.password" @input="handleChanges" />
     </a-form-item>
 
     <div class="number-input">
       <ul class="number-list" :class="!isDisabled ? 'disabled' : ''">
-        <li v-for="(n, index) in 10"
-            :key="n"
-            @click="numberClick(index)"
-        >
+        <li v-for="(n, index) in 10" :key="n" @click="numberClick(index)">
           {{ index }}
         </li>
       </ul>
@@ -127,7 +110,6 @@ const onFinishFailed = (errorInfo: any) => {
 </template>
 
 <style scoped lang="scss">
-
 .number-input {
   display: flex;
   align-items: center;

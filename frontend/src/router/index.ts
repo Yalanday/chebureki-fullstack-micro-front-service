@@ -5,23 +5,24 @@ import HomePage from "@/pages/HomePage.vue";
 import InterfacePage from "@/pages/InterfacePage.vue";
 
 
-const routes: Array<RouteRecordRaw> = [
+export const routes = [
+    {
+        path: '/',
+        component: HomePage,
+    },
+    {
+        path: '/interface',
+        component: InterfacePage,
+    },
     {
         path: '/:pathMatch(.*)*',
-        component: NotFound
-    },
-    {
-        path: "/",
-        component: HomePage
-    },
-    {
-        path: "/interface",
-        component: InterfacePage
+        component: NotFound,
     }
-
 ];
 
-export const router = createRouter({
+const router = createRouter({
     history: createWebHistory(),
     routes
-})
+});
+
+export default router;

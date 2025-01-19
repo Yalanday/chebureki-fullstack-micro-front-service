@@ -7,7 +7,3 @@ import Autorization from "@/components/Autorization.vue";
     <Autorization />
   </div>
 </template>
-
-<style scoped>
-
-</style>
