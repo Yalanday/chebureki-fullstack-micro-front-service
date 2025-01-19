@@ -8,6 +8,7 @@ import federation from '@originjs/vite-plugin-federation'
 // https://vite.dev/config/
 export default defineConfig({
   base: 'http://localhost:4177/',
+  // base: '/',
   plugins: [
     vue(),
     vueDevTools(),
@@ -40,5 +41,7 @@ export default defineConfig({
   },
   server: {
     cors: true, // Разрешить доступ для всех доменов
+    host: '0.0.0.0', // Для доступа из контейнера
+    port: 4177, 
   },
 })

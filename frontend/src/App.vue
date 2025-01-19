@@ -6,13 +6,15 @@ import HomePage from "./pages/HomePage.vue";
 </script>
 
 <template>
-  <Header/>
+  <Header />
   <main>
-    <HomePage/>
+    <HomePage />
   </main>
-  <Footer/>
+  <Footer />
 </template>
 
 <style scoped>
-
+main {
+  position: relative;
+}
 </style>
