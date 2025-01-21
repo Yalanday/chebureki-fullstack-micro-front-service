@@ -11,11 +11,11 @@ COPY dist/ .
 RUN npm install -g http-server
 
 # Открываем порт 4177
-EXPOSE 4174
+EXPOSE 4175
 
-# Запускаем http-server на порту 4177 с разрешением CORS
-CMD ["http-server", ".", "-p", "4174", "--cors"]
+# Запускаем http-server на порту 4175 с разрешением CORS
+CMD ["http-server", ".", "-p", "4175", "--cors"]
 
 
-# docker build -t fr-2 .  
-# docker run -p 4174:4174 fr-2   
+# docker build -t fr-3 .  
+# docker run -p 4175:4175 fr-3   

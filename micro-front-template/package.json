@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 4174",
+    "preview": "vite preview --port 4176",
     "lint": "eslint --ext .ts,.tsx,.vue src"
   },
   "dependencies": {

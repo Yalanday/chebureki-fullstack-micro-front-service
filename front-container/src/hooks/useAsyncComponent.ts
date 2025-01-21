@@ -12,9 +12,15 @@ interface AsyncComponentOptions {
     timeout?: number; // Таймаут загрузки компонента
 }
 
-const moduleMap: any = {
+type ModuleMap = {
+    [key: string]: () => Promise<any>;
+};
+
+const moduleMap: ModuleMap = {
     'frontend-1': () => import('frontend-1/App'),
     'frontend-2': () => import('frontend-2/App'),
+    'frontend-3': () => import('frontend-3/App'),
+    'frontend-4': () => import('frontend-4/App'),
 };
 
 export function useAsyncComponent({

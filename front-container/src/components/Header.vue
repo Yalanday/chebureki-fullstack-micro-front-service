@@ -8,12 +8,14 @@
       <div class="header__logo">
         <img src="/Logo.png" width="250" alt="Vue.js">
       </div>
-      <div class="header__user">
-        <span>Выход</span>
-        <div class="header__user-img">
-          <img src="/icon-user.png" width="30" alt="User">
+      <router-link to="/">
+        <div class="header__user">
+          <span>Выход</span>
+          <div class="header__user-img">
+            <img src="/icon-user.png" width="30" alt="User">
+          </div>
         </div>
-      </div>
+      </router-link>
     </div>
   </header>
 </template>

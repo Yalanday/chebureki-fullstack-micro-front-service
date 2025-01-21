@@ -7,13 +7,13 @@ import federation from '@originjs/vite-plugin-federation'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: 'http://localhost:4174/',
+  base: 'http://localhost:4175/',
   // base: '/',
   plugins: [
     vue(),
     vueDevTools(),
     federation({
-      name: 'frontend-2',
+      name: 'frontend-3',
       filename: 'remoteEntry.js',
       exposes: {
         './App': './src/App.vue',
@@ -42,6 +42,6 @@ export default defineConfig({
   server: {
     cors: true, // Разрешить доступ для всех доменов
     host: '0.0.0.0', // Для доступа из контейнера
-    port: 4174, 
+    port: 4175, 
   },
 })

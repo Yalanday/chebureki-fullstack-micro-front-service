@@ -6,13 +6,19 @@
   <div class="left-panel">
     <ul class="left-panel__list">
       <li class="left-panel__item">
-        Рабочий стол
+        <router-link to="/interface">
+          Рабочий стол
+        </router-link>
       </li>
       <li class="left-panel__item">
-        Продажи
+        <router-link to="/interface/sale">
+          Продажи
+        </router-link>
       </li>
       <li class="left-panel__item">
-        Сотрудники
+        <router-link to="/interface/workers">
+          Сотрудники
+        </router-link>
       </li>
       <li class="left-panel__item">
         Объявления
@@ -42,6 +48,7 @@
     transition: background-color 0.3s;
     border-bottom: 1px solid #eeeeee;
   }
+
   .left-panel__item:hover {
     background-color: #ffffff;
   }

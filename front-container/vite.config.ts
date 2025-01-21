@@ -10,9 +10,10 @@ export default defineConfig({
     federation({
       name: 'containerApp',
       remotes: {
-        'frontend-1': 'http://localhost:4173/assets/remoteEntry.js', // Путь к файлу remoteEntry.js
-        'frontend-2': 'http://localhost:4177/assets/remoteEntry.js', // Путь к файлу remoteEntry.js
-
+        'frontend-1': 'http://localhost:4173/assets/remoteEntry.js',
+        'frontend-2': 'http://localhost:4174/assets/remoteEntry.js',
+        'frontend-3': 'http://localhost:4175/assets/remoteEntry.js',
+        'frontend-4': 'http://localhost:4176/assets/remoteEntry.js',
       },
       shared: ['vue'],
     }),

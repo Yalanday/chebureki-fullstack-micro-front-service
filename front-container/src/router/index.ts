@@ -1,6 +1,9 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import InterfacePage from "@/components/InterfacePage.vue";
 import LoginPage from "@/components/LoginPage.vue";
+import MicroFrontDesktop from "@/components/Microfront-desktop.vue";
+import MicroFrontSales from "@/components/Microfront-sales.vue";
+import MicroFrontWorkers from "@/components/Microfront-workers.vue";
 
 declare global {
     interface WindowEventMap {
@@ -21,7 +24,22 @@ const routes = [
     },
     {
         path: '/interface',
-        component: InterfacePage, // Используем App из микрофронтенда 2
+        component: InterfacePage,
+
+        children: [
+            {
+                path: '', // Пустой путь — будет загружаться по умолчанию
+                component: MicroFrontDesktop, // Ваш дочерний компонент
+            },
+            {
+                path: 'sale', // Пример другого дочернего маршрута
+                component: MicroFrontSales,
+            },
+            {
+                path: 'workers', // Пример другого дочернего маршрута
+                component: MicroFrontWorkers,
+            },
+        ],// Используем App из микрофронтенда 2
     },
 ];
 
