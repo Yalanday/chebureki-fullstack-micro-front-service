@@ -14,6 +14,7 @@ export default defineConfig({
         'frontend-2': 'http://localhost:4174/assets/remoteEntry.js',
         'frontend-3': 'http://localhost:4175/assets/remoteEntry.js',
         'frontend-4': 'http://localhost:4176/assets/remoteEntry.js',
+        'frontend-5': 'http://localhost:4177/assets/remoteEntry.js',
       },
       shared: ['vue'],
     }),

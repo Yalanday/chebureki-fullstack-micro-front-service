@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import {useAsyncComponent} from '@/hooks/useAsyncComponent';
 import {onMounted} from "vue";
 import axios from "axios";
 import Header from "@/components/Header.vue";
 import LeftPanel from "@/components/LeftPanel.vue";
 
-// Используем ключ для выбора модуля
-const MicroFront2App = useAsyncComponent({
-  moduleKey: 'frontend-2',
-});
 
 // onMounted(async () => {
 //

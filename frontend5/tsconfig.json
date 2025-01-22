@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "strict": true,
+    "moduleResolution": "node",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "allowSyntheticDefaultImports": true,
+    "types": ["vite/client"]
+  }
+}
