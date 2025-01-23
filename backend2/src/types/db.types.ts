@@ -1,12 +1,13 @@
 export enum TableTypes {
-    directors = 'directors',
-    semidirectors = 'semidirectors',
-    admins = 'admins',
-    cashiers = 'cashiers',
+    products = 'products',
 }
 
-export enum AddUserEnum {
+export enum AddProductEnum {
     name = 'name',
-    lastname = 'lastname',
-    password = 'password'
+    price = 'price',
+    quantity = 'quantity',
+    category = 'category',
+    description = 'description',
+    image = 'image',
+    label = 'label',
 }

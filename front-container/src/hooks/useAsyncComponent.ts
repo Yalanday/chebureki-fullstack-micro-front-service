@@ -21,6 +21,8 @@ const moduleMap: ModuleMap = {
     'frontend-2': () => import('frontend-2/App'),
     'frontend-3': () => import('frontend-3/App'),
     'frontend-4': () => import('frontend-4/App'),
+    'frontend-5': () => import('frontend-5/App'),
+    'frontend-6': () => import('frontend-6/App'),
 };
 
 export function useAsyncComponent({

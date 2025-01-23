@@ -16,6 +16,11 @@
         </router-link>
       </li>
       <li class="left-panel__item">
+        <router-link to="/interface/products">
+          Товары
+        </router-link>
+      </li>
+      <li class="left-panel__item">
         <router-link to="/interface/workers">
           Сотрудники
         </router-link>

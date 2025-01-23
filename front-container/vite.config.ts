@@ -15,13 +15,13 @@ export default defineConfig({
         'frontend-3': 'http://localhost:4175/assets/remoteEntry.js',
         'frontend-4': 'http://localhost:4176/assets/remoteEntry.js',
         'frontend-5': 'http://localhost:4177/assets/remoteEntry.js',
+        'frontend-6': 'http://localhost:4178/assets/remoteEntry.js', // Товары
       },
       shared: ['vue'],
     }),
   ],
   build: {
     target: 'esnext',
-
   },
   resolve: {
     alias: {

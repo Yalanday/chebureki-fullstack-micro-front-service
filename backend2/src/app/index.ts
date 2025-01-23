@@ -13,6 +13,8 @@ app.use(express.json());
 app.use(xssClean());
 // Удаляет операторы $ и . из входящих данных
 app.use(mongoSanitize());
+// Доля логирования
 app.use(morgan('dev'));
-
+// Добавляет корневую папку для статических файлов
+app.use(express.static('public'));
 

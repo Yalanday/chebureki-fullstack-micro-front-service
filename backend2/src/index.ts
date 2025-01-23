@@ -2,7 +2,7 @@
 import {port} from "./config-files/port";
 import {app} from "./app";
 import {myDB} from "./db/db";
-import {AddUserEnum, TableTypes} from "./types/db.types";
+import {AddProductEnum, TableTypes} from "./types/db.types";
 import {router} from "./app/presentation/router";
 
 
@@ -18,13 +18,15 @@ app.listen(port, async () => {
 })
 
 
-const addAdmin = async () :Promise<void> => {
-    await myDB.queryInsert<AddUserEnum>(
-        TableTypes.cashiers,
-        [AddUserEnum.name, AddUserEnum.lastname, AddUserEnum.password],
-        ['Zinaida', 'Spears', '333']
+const addProduct = async () :Promise<void> => {
+    await myDB.queryInsert<AddProductEnum>(
+        TableTypes.products,
+        [AddProductEnum.name, AddProductEnum.price, AddProductEnum.quantity, AddProductEnum.category, AddProductEnum.description, AddProductEnum.image, AddProductEnum.label],
+        ['Чебурек со свининой', 120, 45, 'выпечка', 'Классический чебурек со свининой по традиционному рецепту', '/images/cheburek.jpg', 'chebureks'],
     )
 }
+
+// addProduct();
 
 
 const fetching = async (): Promise<void> => {
@@ -34,6 +36,5 @@ const fetching = async (): Promise<void> => {
         .catch(err => console.error('NOOOOOOO', err));
 }
 
-fetching().then()
-
+// fetching().then()
 
