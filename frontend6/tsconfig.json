@@ -4,6 +4,7 @@
     "module": "ESNext",
     "strict": true,
     "moduleResolution": "node",
+    "skipLibCheck": true,
     "lib": [
       "ESNext",
       "DOM"

@@ -22,11 +22,12 @@ const addProduct = async () :Promise<void> => {
     await myDB.queryInsert<AddProductEnum>(
         TableTypes.products,
         [AddProductEnum.name, AddProductEnum.price, AddProductEnum.quantity, AddProductEnum.category, AddProductEnum.description, AddProductEnum.image, AddProductEnum.label],
-        ['Чебурек со свининой', 120, 45, 'выпечка', 'Классический чебурек со свининой по традиционному рецепту', '/images/cheburek.jpg', 'chebureks'],
+        ['Чебурек с бараниной', 110, 60, 'чебуреки с мясом', 'Классический чебурек с бараниной по традиционному рецепту', '/images/cheburek.jpg', 'chebureks-baran'],
     )
 }
 
 // addProduct();
+
 
 
 const fetching = async (): Promise<void> => {

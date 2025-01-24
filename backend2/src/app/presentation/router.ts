@@ -20,6 +20,7 @@ router.get("/", async (req: Request, res: Response) => {
     }
 )
 
+
 router.get("/products", getTableDataHandler(
     "products",
     [

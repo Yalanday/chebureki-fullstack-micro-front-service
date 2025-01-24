@@ -54,9 +54,14 @@ class MyDataBase {
             console.log(`queryInsert for ${table} OK`)
         } catch (err) {
             console.log(`queryInsert for ${table} ERROR`);
+            if (err.code === 'ER_DUP_ENTRY') {
+                console.log(`Ошибка: Дублирующаяся запись для ${arrValue}`);
+                return 'Duplicate entry'; // Можно вернуть какое-то сообщение
+            }
             throw err;
         } finally {
             await connection.end();
+            console.log('connection end')
         }
     }
 
