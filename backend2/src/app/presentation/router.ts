@@ -5,7 +5,7 @@ import {myDB} from "../../db/db";
 
 export const router = express.Router();
 
-const getTableDataHandler = (table: string, columns: string[]) => async (req: Request, res: Response) => {
+export const getTableDataHandlerRest = (table: string, columns: string[]) => async (req: Request, res: Response) => {
     try {
         const result: any = await getTableBD(table, columns);
         res.status(200).json(result);
@@ -21,7 +21,7 @@ router.get("/", async (req: Request, res: Response) => {
 )
 
 
-router.get("/products", getTableDataHandler(
+router.get("/products", getTableDataHandlerRest(
     "products",
     [
         "id",

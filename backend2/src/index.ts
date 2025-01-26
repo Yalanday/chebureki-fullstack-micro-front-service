@@ -1,21 +1,57 @@
 //config
 import {port} from "./config-files/port";
 import {app} from "./app";
+import { json } from 'body-parser';
 import {myDB} from "./db/db";
 import {AddProductEnum, TableTypes} from "./types/db.types";
 import {router} from "./app/presentation/router";
-
+// настройка аполло
+import {ApolloServer} from '@apollo/server';
+import {expressMiddleware} from "@apollo/server/express4";
+import {typeDefs} from "./graphql/schema";
+import {resolvers} from "./graphql/resolvers";
 
 app.use('/', router)
 
-app.listen(port, async () => {
-    console.log(`Server is running on port ${port}`);
-    try {
-        await myDB.checkDB();
-    } catch (err) {
-        console.log("Error connecting to database", err);
-    }
-})
+async function setupGraphQL() {
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers,
+    })
+
+    await server.start();
+
+    app.use(
+        '/graphql',
+        json(),
+        expressMiddleware(server, {
+            context: async ({ req }) => ({ token: req.headers.authorization }),
+        }),
+    );
+
+    console.log('🚀 Apollo Server запущен на маршруте /graphql');
+}
+
+async function startServer() {
+    await setupGraphQL();
+
+    app.listen(port, () => {
+        console.log(`Сервер запущен на http://localhost:${port}`);
+        console.log(`REST API: http://localhost:${port}/api/`);
+        console.log(`GraphQL: http://localhost:${port}/graphql`);
+    });
+}
+
+startServer().catch(()=> console.log('Error'));
+
+// app.listen(port, async () => {
+//     console.log(`Server is running on port ${port}`);
+//     try {
+//         await myDB.checkDB();
+//     } catch (err) {
+//         console.log("Error connecting to database", err);
+//     }
+// })
 
 
 const addProduct = async () :Promise<void> => {
