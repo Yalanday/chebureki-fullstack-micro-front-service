@@ -1,81 +1,52 @@
 <script setup lang="ts">
-import {ref, onMounted, Ref} from 'vue';
-import axios from 'axios';
-import {gql} from "@apollo/client/core";
-import {apolloClient} from "@/apollo";
-
-type ItemsType = {
-  id: number,
-  name: string,
-  price: number,
-  quantity: number,
-  category: string,
-  description: string,
-  image: string,
-  label: string,
-}
+import {ref, onMounted, watch, Ref, computed} from 'vue';
+import {GET_PRODUCTS_LIST, GET_PRODUCTS_LIST_WITH_FILTERS} from "@/graphql/products";
+import {getProductsApollo} from "@/graphql/api-methods";
+import {ItemsType} from "@/types/types";
+import ProductsList from "@/components/ProductsList.vue";
+import Filter from "@/components/Filter.vue";
+import { useQuery } from '@vue/apollo-composable';
+import {useFilterStore} from "@/store/filter";
 
 const items: Ref<ItemsType[]> = ref([]);
+const filterStore = useFilterStore()
 
-const getProducts = async () => {
-  try {
-    const response = await axios.get<ItemsType[]>('http://localhost:3002/products');
-    console.log(response.data);
-    items.value = response.data
+// Создаем реактивное свойство для фильтров
+const filters = ref<{ column: string, operator: string, value: string }[]>([]);
 
-  } catch (error) {
-    console.log(error);
-  }
-}
 
-const GET_PRODUCTS = gql`
-  query {
-    getTableData(table: "products", columns: ["id", "name", "price", "quantity", "category", "description", "image", "label"]) {
-        id,
-        name,
-        price,
-        quantity,
-        category,
-        description,
-        image,
-        label
-    }
-  }
-`;
+const { result, loading, error, refetch } = useQuery(GET_PRODUCTS_LIST_WITH_FILTERS, () => ({
+  filters: filters.value, // Передаём фильтры в запрос
+}));
 
-const getProductsApollo = async () => {
-  try {
-    const response = await apolloClient.query({
-      query: GET_PRODUCTS,
-    });
-    console.log(response.data.getTableData);
-    items.value = response.data.getTableData; // Заполняем данные в items
-  } catch (error) {
-    console.error('Ошибка при запросе данных:', error);
-  }
-};
+watch(
+    () => filterStore.currentFilter, // Следим за изменениями в фильтре
+    (newFilterValue) => {
+      // Автоматически обновляем фильтры
+      filters.value = newFilterValue === '' ? [] : [{ column: 'category', operator: 'LIKE', value: `%${newFilterValue}%` }];
+      // После обновления фильтров, можно делать refetch, если необходимо
+    },
+    { immediate: true } // Сразу запускаем, чтобы синхронизировать с начальным значением
+);
 
-onMounted(async () => {
-  // getProducts().catch()
-  await getProductsApollo();
-  console.log(items.value)
-})
+watch(
+    result,
+    (newResult) => {
+      if (newResult) {
+        items.value = newResult.getTableData || []; // Обновляем items данными из результата
+      }
+    },
+    { immediate: true } // Сразу синхронизируем, если результат есть при монтировании
+);
+
+
 </script>
 
 
 <template>
   <h1> Микрофронтенд Товары</h1>
-
-  <ul>
-    <li v-for="item in items" :key="item.id">
-      <img class="item__image" :src="`http://localhost:3002${item.image}`" width="300px" :alt="item.name"/>
-      <h3 class="item__title">{{ item.name }}</h3>
-      <p class="item__price">Цена: {{ item.price }}</p>
-      <p class="item__quantity"> Остаток: {{ item.quantity }}</p>
-      <p class="item__description">{{ item.description }}</p>
-    </li>
-  </ul>
-
+  <Filter/>
+  <products-list :items="items"/>
 </template>
 
 <style scoped>

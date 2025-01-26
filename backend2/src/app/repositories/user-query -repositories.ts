@@ -1,8 +1,8 @@
 import {myDB} from "../../db/db";
 
-export const getTableBD = async (table: string, columns: string[]) => {
+export const getTableBD = async (table: string, columns: string[], filters?: string) => {
     try {
-        let result: any = await myDB.getTable(table, columns)
+        let result: any = await myDB.getTable(table, columns, filters)
         const resp = result.map((item: any) => {
             return item.result
         })

@@ -18,10 +18,6 @@ export default defineConfig({
       exposes: {
         './App': './src/App.vue',
       },
-      shared: {
-        vue: { singleton: true },
-        'ant-design-vue': { singleton: true }, // Явно указываем
-      },
     })
   ],
   build: {
@@ -42,6 +38,6 @@ export default defineConfig({
   server: {
     cors: true, // Разрешить доступ для всех доменов
     host: '0.0.0.0', // Для доступа из контейнера
-    port: 4178, 
+    port: 4178,
   },
 })

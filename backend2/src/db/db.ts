@@ -66,13 +66,21 @@ class MyDataBase {
     }
 
 
-    public async getTable(table: string, columns: string[]) {
+    public async getTable(table: string, columns: string[], filters?: string) {
         let connection: Connection;
         {
             try {
                 connection = await this.connectToDB();
+
+                let whereClause = '';
+                if(filters && filters.length > 0){
+                    whereClause =  'WHERE ' + filters
+                }
+
+
                 const query = `SELECT JSON_OBJECT(${columns.map(col => `'${col}', ${col}`).join(', ')}) AS result
-                               FROM ${table}`;
+                               FROM ${table}
+                               ${whereClause}`;
                 const [rows] = await connection.execute(query);
                 return rows
 

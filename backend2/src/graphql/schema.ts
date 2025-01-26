@@ -11,9 +11,19 @@ export const typeDefs = gql`
     image: String
     label: String
   }
+  
+    input FilterInput {
+    column: String!   # Имя колонки для фильтрации
+    operator: String! # Оператор для фильтрации
+    value: String!    # Значение фильтра
+  }
 
   type Query {
-    getTableData(table: String!, columns: [String]!): [Product]
+    getTableData(
+        table: String!,
+        columns: [String]!,
+        filters: [FilterInput]
+        ): [Product]
   }
 `;
 
