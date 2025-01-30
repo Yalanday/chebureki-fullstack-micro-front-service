@@ -51,5 +51,25 @@ const filterItems = [
 </template>
 
 <style scoped>
+.filter__list {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter__item {
+  grid-column: 2 span;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.filter__item:hover {
+  scale: 1.05;
+  box-shadow: 5px 5px 5px #888888;
+}
 
 </style>
