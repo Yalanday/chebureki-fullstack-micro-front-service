@@ -15,7 +15,6 @@ const filterStore = useFilterStore()
 // Создаем реактивное свойство для фильтров
 const filters = ref<{ column: string, operator: string, value: string }[]>([]);
 
-
 const {result, loading, error, refetch} = useQuery(GET_PRODUCTS_LIST_WITH_FILTERS, () => ({
   filters: filters.value, // Передаём фильтры в запрос
 }));
