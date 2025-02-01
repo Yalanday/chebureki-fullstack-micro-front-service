@@ -1,27 +1,60 @@
 <script setup lang="ts">
 import {ItemsType} from "@/types/types";
-
+import { ref } from 'vue';
+import { message } from 'ant-design-vue';
+import ModalCard from "@/components/ModalCard.vue";
 
 defineProps<{
-  items: ItemsType[]; // Обязательное свойство типа ItemsType[]
+  items: ItemsType[];
 }>();
+
+const open = ref<boolean>(false);
+const selectedItem = ref<ItemsType | null>(null);
+
+const showModal = (item: any) => {
+  selectedItem.value = item;
+  console.log(selectedItem.value);
+  open.value = true;
+};
+
+const handleOk = () => {
+  message.success('Модальное окно закрыто');
+  open.value = false;
+};
+
+// Обработчик кнопки "Cancel"
+const handleCancel = () => {
+  message.info('Закрытие модального окна');
+  open.value = false;
+};
+
 
 </script>
 
 <template>
-  <ul class="card-list">
-    <li v-for="item in items"
-        :key="item.id"
-        class="card-item">
-      <img class="item__image" :src="`http://localhost:3002${item.image}`" width="250" height="250" :alt="item.name"/>
-      <h3 class="item__title">{{ item.name }}</h3>
-      <p class="item__description">{{ item.description }}</p>
-      <div class="item__info">
-      <span class="item__price">Цена: {{ item.price }} руб.</span>
-      <span class="item__quantity"> Остаток: {{ item.quantity }}</span>
-      </div>
-    </li>
-  </ul>
+<ul class="card-list">
+<li
+    v-for="item in items"
+    :key="item.id"
+    class="card-item"
+    @click="showModal(item)"
+>
+  <img
+      class="item__image"
+      :src="`http://localhost:3002${item.image}`"
+      width="250"
+      height="250"
+      :alt="item.name"
+  />
+  <h3 class="item__title">{{ item.name }}</h3>
+  <p class="item__description">{{ item.description }}</p>
+  <div class="item__info">
+    <span class="item__price">Цена: {{ item.price }} руб.</span>
+    <span class="item__quantity"> Остаток: {{ item.quantity }}</span>
+  </div>
+</li>
+</ul>
+  <modal-card v-model:open="open"  :selectedItem="selectedItem" @ok="handleOk" @cancel="handleCancel"/>
 </template>
 
 <style scoped>

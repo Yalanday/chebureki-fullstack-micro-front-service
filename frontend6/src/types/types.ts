@@ -7,3 +7,7 @@ export type ItemsType = {
     description: string,
     image: string,
 }
+
+export interface ModalProps {
+    selectedItem: ItemsType | null;
+}
