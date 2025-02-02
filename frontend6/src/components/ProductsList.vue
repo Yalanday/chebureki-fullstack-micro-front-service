@@ -22,12 +22,10 @@ const handleOk = () => {
   open.value = false;
 };
 
-// Обработчик кнопки "Cancel"
 const handleCancel = () => {
   message.info('Закрытие модального окна');
   open.value = false;
 };
-
 
 </script>
 

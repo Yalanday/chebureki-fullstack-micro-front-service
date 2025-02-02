@@ -6,13 +6,10 @@ const props = defineProps<ModalProps>()
 </script>
 
 <template>
-  <!-- Модальное окно -->
   <a-modal
-
       :title="props.selectedItem?.name"
       :okText="'Добавить в продажу'"
       :cancelText="'Отмена'"
-
       width="600px"
   >
     <div v-if="selectedItem" class="modal-content">
